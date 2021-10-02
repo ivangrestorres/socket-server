@@ -46,24 +46,9 @@
         ></script>
         <script>
             const socket = io("https://igt-socket-server.herokuapp.com");
-            const form = document.querySelector("#miForm");
-            const mensajes = document.querySelector("#misMensajes");
-            const txtMensaje = document.querySelector("#txtMensaje");
 
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-
-                const msg = txtMensaje.value;
-
-                socket.emit("mensaje-to-server", {
-                    msg,
-                    nombre: "Fernando",
-                });
-            });
-
-            socket.on("mensaje-bienvenida", (data) => console.log(data));
-            socket.on("mensaje-to-client", (data) => {
-                mensajes.innerHTML += `<li>${data.msg}</li>`;
+            socket.on("mensaje-from-server", (data) => {
+                console.log(data);
             });
         </script>
     </body>

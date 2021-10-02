@@ -6,14 +6,9 @@ class Sockets {
 
     socketEvents() {
         this.io.on("connection", (socket) => {
-            socket.emit("mensaje-bienvenida", {
-                msg: "Hola mundo!",
-                fecha: new Date(),
-            });
-
             socket.on("mensaje-to-server", (data) => {
                 console.log(data);
-                this.io.emit("mensaje-to-client", data);
+                this.io.emit("mensaje-from-server", data);
             });
         });
     }
